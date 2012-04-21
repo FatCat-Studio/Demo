@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <GLKit/GLKit.h>
 @interface ASPGLKMainVIewController : GLKViewController
 
 @end

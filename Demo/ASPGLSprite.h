@@ -1,0 +1,52 @@
+//
+//  ASPGLSprite.h
+//  Demo
+//
+//  Created by Руслан Федоров on 4/20/12.
+//  Copyright (c) 2012 MIPT iLab. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
+
+@interface ASPGLSprite : NSObject
+
+@property (strong,nonatomic) NSString *fileName;
+@property (assign) GLKVector2 position;
+@property (nonatomic,setter = setContentSize:) CGSize contentSize;
+@property (assign) GLKVector2 moveVelocity;
+@property (assign) BOOL hidden;
+
+#pragma mark Class Methods
++ (ASPGLSprite*) spriteWithTextureName:(NSString*)fileName effect:(GLKBaseEffect*)effect;
++ (GLKTextureInfo*) loadTextureToStorage:(NSString*)fileName;
+
+#pragma mark Init
+- (id)initWithFile:(NSString *)fileName 
+			effect:(GLKBaseEffect *)effect
+		  position:(GLKVector2)position
+			bounds:(CGSize)size 
+respectAspectRatio:(BOOL)respectAR;
+- (id)initWithFile:(NSString *)fileName 
+			effect:(GLKBaseEffect *)effect 
+		  position:(GLKVector2)position
+			bounds:(CGSize)size;
+- (id)initWithFile:(NSString *)fileName 
+			effect:(GLKBaseEffect *)effect
+		  position:(GLKVector2)position;
+- (id)initWithFile:(NSString *)fileName 
+			effect:(GLKBaseEffect *)effect 
+			bounds:(CGSize)size;
+- (id)initWithFile:(NSString *)fileName 
+			effect:(GLKBaseEffect *)effect 
+			bounds:(CGSize)size 
+respectAspectRatio:(BOOL)respectAR;
+- (id)initWithFile:(NSString *)fileName 
+			effect:(GLKBaseEffect *)effect;
+#pragma mark -
+- (void)render;
+- (void)update:(CGFloat)dt;
+- (void)outOfView;
+
+@end
+

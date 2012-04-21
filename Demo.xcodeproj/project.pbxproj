@@ -17,6 +17,9 @@
 		5866195315414C8600152552 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866195215414C8600152552 /* OpenGLES.framework */; };
 		5866195515414C8D00152552 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866195415414C8D00152552 /* GLKit.framework */; };
 		5866195815414CB700152552 /* ASPGLKMainVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866195715414CB700152552 /* ASPGLKMainVIewController.m */; };
+		586619601541559700152552 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866195F1541559700152552 /* QuartzCore.framework */; };
+		586619631541576E00152552 /* ASPGLSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 586619621541576E00152552 /* ASPGLSprite.m */; };
+		586619661541596D00152552 /* Space_Invaders_by_maleiva.png in Resources */ = {isa = PBXBuildFile; fileRef = 586619651541596D00152552 /* Space_Invaders_by_maleiva.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,10 @@
 		5866195415414C8D00152552 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		5866195615414CB700152552 /* ASPGLKMainVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASPGLKMainVIewController.h; sourceTree = "<group>"; };
 		5866195715414CB700152552 /* ASPGLKMainVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASPGLKMainVIewController.m; sourceTree = "<group>"; };
+		5866195F1541559700152552 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		586619611541576E00152552 /* ASPGLSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASPGLSprite.h; sourceTree = "<group>"; };
+		586619621541576E00152552 /* ASPGLSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASPGLSprite.m; sourceTree = "<group>"; };
+		586619651541596D00152552 /* Space_Invaders_by_maleiva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Space_Invaders_by_maleiva.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				586619601541559700152552 /* QuartzCore.framework in Frameworks */,
 				5866195515414C8D00152552 /* GLKit.framework in Frameworks */,
 				5866195315414C8600152552 /* OpenGLES.framework in Frameworks */,
 				5866193515414A7200152552 /* UIKit.framework in Frameworks */,
@@ -73,6 +81,7 @@
 		5866193315414A7200152552 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5866195F1541559700152552 /* QuartzCore.framework */,
 				5866195415414C8D00152552 /* GLKit.framework */,
 				5866195215414C8600152552 /* OpenGLES.framework */,
 				5866193415414A7200152552 /* UIKit.framework */,
@@ -89,6 +98,8 @@
 				5866194415414A7200152552 /* ASPAppDelegate.m */,
 				5866195615414CB700152552 /* ASPGLKMainVIewController.h */,
 				5866195715414CB700152552 /* ASPGLKMainVIewController.m */,
+				586619611541576E00152552 /* ASPGLSprite.h */,
+				586619621541576E00152552 /* ASPGLSprite.m */,
 				5866195015414AB400152552 /* Storyboard.storyboard */,
 				5866193B15414A7200152552 /* Supporting Files */,
 			);
@@ -98,12 +109,21 @@
 		5866193B15414A7200152552 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				586619641541596D00152552 /* Pics */,
 				5866193C15414A7200152552 /* Demo-Info.plist */,
 				5866193D15414A7200152552 /* InfoPlist.strings */,
 				5866194015414A7200152552 /* main.m */,
 				5866194215414A7200152552 /* Demo-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		586619641541596D00152552 /* Pics */ = {
+			isa = PBXGroup;
+			children = (
+				586619651541596D00152552 /* Space_Invaders_by_maleiva.png */,
+			);
+			path = Pics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +180,7 @@
 			files = (
 				5866193F15414A7200152552 /* InfoPlist.strings in Resources */,
 				5866195115414AB400152552 /* Storyboard.storyboard in Resources */,
+				586619661541596D00152552 /* Space_Invaders_by_maleiva.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +194,7 @@
 				5866194115414A7200152552 /* main.m in Sources */,
 				5866194515414A7200152552 /* ASPAppDelegate.m in Sources */,
 				5866195815414CB700152552 /* ASPGLKMainVIewController.m in Sources */,
+				586619631541576E00152552 /* ASPGLSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
