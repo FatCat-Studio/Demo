@@ -15,5 +15,5 @@
 @property (strong,nonatomic) EAGLContext *context;
 @property (strong,nonatomic) NSMutableArray *sprites;
 @property (readonly) CGSize viewIOSize;
-@property (assign) GLKVector4 backgroundColor;
+@property (assign) GLKVector3 backgroundColor;
 @end

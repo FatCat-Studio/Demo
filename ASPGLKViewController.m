@@ -30,7 +30,7 @@
 	//GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), self.viewIOSize.height/self.viewIOSize.width, -4.0f, 10.0f);
 	self.effect.transform.projectionMatrix = projectionMatrix;
 	self.sprites=[NSMutableSet setWithCapacity:10];
-	self.backgroundColor=GLKVector4Make(0.2, 0.2, 0.2, 1);
+	self.backgroundColor=GLKVector3Make(0.2, 0.2, 0.2);
 }
 - (void) viewDidLoad{
 	srand(time(NULL));
@@ -61,7 +61,7 @@
 }
 #pragma mark Drawing
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
-	glClearColor(_backgroundColor.x, _backgroundColor.y, _backgroundColor.z, _backgroundColor.w);
+	glClearColor(_backgroundColor.x, _backgroundColor.y, _backgroundColor.z, 1);
     glClear(GL_COLOR_BUFFER_BIT);    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);

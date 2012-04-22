@@ -19,22 +19,19 @@
 }
 
 //Тут желательно прогрузить все текстуры и насоздавать спрайтов. 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 	//Заполняем список
 	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",@"tits.png",nil];
 	
 }
-- (void)viewDidUnload
-{
+- (void)viewDidUnload{
     [super viewDidUnload];
     pics=nil;
 	[ASPGLSprite clearTextureCache];
 }
 #define XSPEED (rand()%600)
 #define YSPEED (rand()%200)
-
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
 	[super glkView:view drawInRect:rect];
     for (ASPGLSprite *sp in self.sprites) {
