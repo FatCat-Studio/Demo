@@ -68,7 +68,5 @@
 }
 
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	self.paused=!self.paused;
-}
+
 @end

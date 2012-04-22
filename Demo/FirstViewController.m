@@ -49,7 +49,7 @@
 			return;
 		}
 		//Выставляем параметры созданного спрайта
-		sprite.moveVelocity=GLKVector2Make(-300+XSPEED, YSPEED);
+		sprite.velocity=GLKVector2Make(-300+XSPEED, YSPEED);
 		sprite.contentSize=CGSizeMake(20+rand()%100,20+rand()%100);
 		sprite.position=GLKVector2Make(self.viewIOSize.width/2, -sprite.contentSize.height);
 		//Смотрим, лежит ли спрайт в списке спрайтов и если нет - добавляем его туда
@@ -64,14 +64,20 @@
 		if (sp.position.y>self.viewIOSize.height)
 			[sp outOfView];
 		if (sp.position.x+sp.contentSize.width>self.viewIOSize.width) {
-			sp.moveVelocity=GLKVector2Make(-XSPEED, YSPEED);
+			sp.velocity=GLKVector2Make(-XSPEED, YSPEED);
 		}else if(sp.position.x<0){
-			sp.moveVelocity=GLKVector2Make(XSPEED, YSPEED);
+			sp.velocity=GLKVector2Make(XSPEED, YSPEED);
 		}
 	}
 	a+=8;
 }
-
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];   
+    CGPoint currentPoint = [touch locationInView:self.view];
+	for (ASPGLSprite *sp in self.sprites){
+		
+	}
+}
 
 
 @end

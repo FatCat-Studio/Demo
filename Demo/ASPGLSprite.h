@@ -14,7 +14,8 @@
 @property (strong,nonatomic) NSString *fileName;
 @property (assign) GLKVector2 position;
 @property (nonatomic) CGSize contentSize;
-@property (assign) GLKVector2 moveVelocity;
+@property (assign) GLKVector2 velocity;
+@property (assign) GLKVector2 acceleration;
 @property (assign) GLfloat rotation;
 @property (assign) BOOL hidden;
 
