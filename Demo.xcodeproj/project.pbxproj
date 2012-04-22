@@ -21,6 +21,7 @@
 		586619601541559700152552 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866195F1541559700152552 /* QuartzCore.framework */; };
 		586619631541576E00152552 /* ASPGLSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 586619621541576E00152552 /* ASPGLSprite.m */; };
 		586619661541596D00152552 /* Space_Invaders_by_maleiva.png in Resources */ = {isa = PBXBuildFile; fileRef = 586619651541596D00152552 /* Space_Invaders_by_maleiva.png */; };
+		586BBA551544A5B700332DED /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 586BBA541544A5B700332DED /* player.png */; };
 		58B55E9F15436C8D00DB2786 /* spaceinvaders.png in Resources */ = {isa = PBXBuildFile; fileRef = 58B55E9E15436C8D00DB2786 /* spaceinvaders.png */; };
 		58B55EA21543719400DB2786 /* tits.png in Resources */ = {isa = PBXBuildFile; fileRef = 58B55EA11543719400DB2786 /* tits.png */; };
 		58E0A7D2154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E0A7D1154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png */; };
@@ -49,6 +50,7 @@
 		586619611541576E00152552 /* ASPGLSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASPGLSprite.h; sourceTree = "<group>"; };
 		586619621541576E00152552 /* ASPGLSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASPGLSprite.m; sourceTree = "<group>"; };
 		586619651541596D00152552 /* Space_Invaders_by_maleiva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Space_Invaders_by_maleiva.png; sourceTree = "<group>"; };
+		586BBA541544A5B700332DED /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		58B55E9E15436C8D00DB2786 /* spaceinvaders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceinvaders.png; sourceTree = "<group>"; };
 		58B55EA11543719400DB2786 /* tits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tits.png; sourceTree = "<group>"; };
 		58E0A7D1154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "erotika_s_krasivymi_popkami-23.png"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				58E0A7D1154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png */,
 				58B55E9E15436C8D00DB2786 /* spaceinvaders.png */,
 				58B55EA11543719400DB2786 /* tits.png */,
+				586BBA541544A5B700332DED /* player.png */,
 				586619651541596D00152552 /* Space_Invaders_by_maleiva.png */,
 			);
 			path = Pics;
@@ -203,6 +206,7 @@
 				58B55E9F15436C8D00DB2786 /* spaceinvaders.png in Resources */,
 				58B55EA21543719400DB2786 /* tits.png in Resources */,
 				58E0A7D2154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png in Resources */,
+				586BBA551544A5B700332DED /* player.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

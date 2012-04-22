@@ -42,6 +42,7 @@ static NSCache *__ASPGLTextureCache;
 @synthesize position = _position, contentSize = _contentSize, velocity = _velocity, fileName=_fileName;
 @synthesize hidden=_hidden, rotation=_rotation;
 
+@synthesize layer;
 #pragma mark Class Methods
 + (ASPGLSprite*) spriteWithTextureName:(NSString*)fileName effect:(GLKBaseEffect*)effect{
 	if (__ASPGLFreeSprites)
@@ -95,6 +96,7 @@ static NSCache *__ASPGLTextureCache;
     if ((self = [super init])) { 
 		//Мелочь
 		self.fileName=fileName;
+		self.layer=0;
 		//Привет шейдер
         self.effect = effect;
 		//Загружаем текстуру
@@ -172,7 +174,7 @@ respectAspectRatio:(BOOL)respectAR{
 #pragma mark - OpenGL Part
 - (GLKMatrix4) modelMatrix {
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
-    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
+    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, self.layer);
 	modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, 0, 0);
 	modelMatrix = GLKMatrix4Scale(modelMatrix, _contentSize.width/_textureInfo.width,_contentSize.height/_textureInfo.height, 0);
 //	modelMatrix = GLKMatrix4RotateZ(modelMatrix, - self.velocity.x/6000.);

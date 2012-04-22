@@ -24,6 +24,7 @@
     [super viewDidLoad];
 	//Заполняем список
 	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",nil];
+	self.player.layer=1;
 	
 }
 - (void)viewDidUnload{
