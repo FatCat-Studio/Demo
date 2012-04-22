@@ -16,6 +16,7 @@
 @implementation FirstViewController{
 	//Тут лежит список имен файлов текстур
 	NSArray *pics;
+	CGPoint touchPos;
 }
 
 //Тут желательно прогрузить все текстуры и насоздавать спрайтов. 
