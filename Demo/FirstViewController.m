@@ -17,7 +17,6 @@
 	//Тут лежит список имен файлов текстур
 	NSArray *pics;
 	CGPoint touchPos;
-	BOOL touching;
 }
 
 //Тут желательно прогрузить все текстуры и насоздавать спрайтов. 
@@ -25,9 +24,6 @@
     [super viewDidLoad];
 	//Заполняем список
 	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",nil];
-	self.player=[ASPGLSprite spriteWithTextureName:@"player.png" effect:self.effect];
-	self.player.hidden=YES;
-	self.player.contentSize=CGSizeMake(200, 200);
 	self.player.layer=1;
 	
 }
@@ -41,9 +37,6 @@
 	[super glkView:view drawInRect:rect];
     for (ASPGLSprite *sp in self.sprites) {
 		[sp render];
-	}
-	if (touching) {
-	[self.player render];
 	}
 }
 
@@ -79,10 +72,6 @@
 		[self recalculateVelocity:sp];
 		[sp update:self.timeSinceLastUpdate];
     }
-	if (touching){
-		self.player.position=GLKVector2Make(touchPos.x, touchPos.y-self.player.contentSize.height/2);
-		self.player.hidden=NO;
-	}
 	a+=8;
 }
 
@@ -97,21 +86,18 @@
 		
     }
 	//Палец
-    if(touching){
+    if(touchPos.x!=0 && touchPos.y != 0){
 		GLfloat dx=touchPos.x-sp.position.x;
 		GLfloat dy=touchPos.y-sp.position.y;
 		GLKVector2 vect=GLKVector2Make(dx, dy);
-		CGFloat length=100-GLKVector2Length(vect);
 		vect=GLKVector2Normalize(vect);
-		if (length>0)
-			vect=GLKVector2MultiplyScalar(vect, length);
+		vect=GLKVector2MultiplyScalar(vect, 20);
         sp.velocity=GLKVector2Add(sp.velocity, vect);
     }
 	//Сила Архимеда нах
 	
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	touching=YES;
 	CGPoint point=[[touches anyObject] locationInView:self.view];
 	touchPos=CGPointMake(point.x, self.viewIOSize.height-point.y);
 }
@@ -120,7 +106,7 @@
 	touchPos=CGPointMake(point.x, self.viewIOSize.height-point.y);
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-	touching=NO;
+	touchPos=CGPointMake(0, 0);
 }
 
 

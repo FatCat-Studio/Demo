@@ -38,15 +38,10 @@ static NSCache *__ASPGLTextureCache;
 @end
 
 @implementation ASPGLSprite
-@synthesize effect = _effect;
-@synthesize quad = _quad;
-@synthesize textureInfo = _textureInfo;
-@synthesize position = _position;
-@synthesize contentSize = _contentSize;
-@synthesize velocity = _velocity;
-@synthesize fileName=_fileName;
-@synthesize hidden=_hidden;
-@synthesize rotation=_rotation;
+@synthesize effect = _effect, quad = _quad, textureInfo = _textureInfo;
+@synthesize position = _position, contentSize = _contentSize, velocity = _velocity, fileName=_fileName;
+@synthesize hidden=_hidden, rotation=_rotation;
+
 @synthesize layer;
 #pragma mark Class Methods
 + (ASPGLSprite*) spriteWithTextureName:(NSString*)fileName effect:(GLKBaseEffect*)effect{
