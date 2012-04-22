@@ -63,7 +63,6 @@
 	}
 	//Тут логика игры и раздача пиздюлей спрайтам.
 	for (ASPGLSprite *sp in self.sprites){
-<<<<<<< HEAD
 		if (sp.position.y>self.viewIOSize.height){
 			[sp outOfView];
 		}else if (sp.position.x+sp.contentSize.width>self.viewIOSize.width) {
@@ -72,17 +71,13 @@
 			sp.velocity=GLKVector2Make(XSPEED, YSPEED);
 		}
 		[sp update:self.timeSinceLastUpdate];
-=======
 		[sp update:self.timeSinceLastUpdate];
         if (sp.position.y>self.viewIOSize.height)
             [sp outOfView];
->>>>>>> We make something new
 	}
 	a+=8;
 }
 
-<<<<<<< HEAD
-=======
 -(void)recalculateVelocity:(ASPGLSprite*)sp{
     GLKVector2 rightWallVelocity = GLKVector2Make(-5, 0);
     GLKVector2 leftWallVelocity = GLKVector2Make(5, 0);
@@ -91,9 +86,9 @@
     }else if(sp.position.x<0){
         sp.velocity=GLKVector2Add(sp.velocity, leftWallVelocity);
     }
-    
+    if(touchPos.x!=0 && touchPos != 0)
 }
->>>>>>> We make something new
+
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];   
     CGPoint currentPoint = [touch locationInView:self.view];
