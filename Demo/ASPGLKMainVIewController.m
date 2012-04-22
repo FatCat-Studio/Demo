@@ -9,6 +9,7 @@
 #import "ASPGLKMainVIewController.h"
 #import "ASPGLSprite.h"
 @interface ASPGLKMainVIewController (){
+	NSArray *pics;
 }
 @property (strong) GLKBaseEffect * effect;
 @property (strong) ASPGLSprite * player;
@@ -42,6 +43,7 @@
 }
 - (void) viewDidLoad{
 	srand(time(NULL));
+	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",@"tits.png",nil];
 	[super viewDidLoad];
 	[self setupGL];
 }
@@ -83,8 +85,7 @@
 - (void)update{
 	static char a=0;
 	if (!a) {
-
-		ASPGLSprite *sprite=[ASPGLSprite spriteWithTextureName:@"Space_Invaders_by_maleiva.png" effect:self.effect];
+		ASPGLSprite *sprite=[ASPGLSprite spriteWithTextureName:[pics objectAtIndex:rand()%[pics count]] effect:self.effect];
 		if (!sprite){
 			NSLog(@"Failed to create a sprite");
 			return;
@@ -94,6 +95,7 @@
 		sprite.position=GLKVector2Make(self.viewIOSize.width/2, -sprite.contentSize.height);
 		if (![_sprites containsObject:sprite]){
 			[_sprites addObject:sprite];
+			NSLog(@"Now there is %d sprites!",[_sprites count]);
 		}
 	}
 	for (ASPGLSprite *sp in _sprites){

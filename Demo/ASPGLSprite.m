@@ -78,13 +78,11 @@ static NSCache *__ASPGLTextureCache;
 	return texture;
 }
 + (GLKTextureInfo*) textureByFileName:(NSString*)fileName loadIfEmpty:(BOOL)load{
-	if (!__ASPGLTextureCache){
-		if(load)
-			return [ASPGLSprite loadTextureToStorage:fileName];
-		else
-			return nil;
-	}
-	return [__ASPGLTextureCache objectForKey:fileName];
+	GLKTextureInfo *texture=[__ASPGLTextureCache objectForKey:fileName];
+	if(load&&!(texture))
+		texture=[ASPGLSprite loadTextureToStorage:fileName];
+	
+	return texture;
 }
 #pragma mark - Init
 - (id)initWithFile:(NSString *)fileName effect:(GLKBaseEffect *)effect position:(GLKVector2)position bounds:(CGSize)size respectAspectRatio:(BOOL)respectAR{
@@ -170,6 +168,7 @@ respectAspectRatio:(BOOL)respectAR{
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
     modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
 	modelMatrix = GLKMatrix4Scale(modelMatrix, _contentSize.width/_textureInfo.width,_contentSize.height/_textureInfo.height, 0);
+//	modelMatrix = GLKMatrix4RotateZ(modelMatrix, - self.moveVelocity.x/6000.);
     return modelMatrix;
 }
 
