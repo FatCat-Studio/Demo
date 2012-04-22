@@ -75,7 +75,9 @@
     UITouch *touch = [touches anyObject];   
     CGPoint currentPoint = [touch locationInView:self.view];
 	for (ASPGLSprite *sp in self.sprites){
-		
+		GLfloat dx=currentPoint.x - sp.position.x;
+		GLfloat dy=currentPoint.y - sp.position.y;
+		sp.acceleration=GLKVector2Make(dx, dy);
 	}
 }
 
