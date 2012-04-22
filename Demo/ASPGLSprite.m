@@ -192,7 +192,9 @@ respectAspectRatio:(BOOL)respectAR{
 }
 
 -(void)update:(CGFloat)dt {
-	GLKVector2 curMove = GLKVector2MultiplyScalar(_velocity, dt);
+    GLKVector2 dv = GLKVector2MultiplyScalar(_acceleration, dt);
+    _velocity = GLKVector2Add(dv, _velocity);
+    GLKVector2 curMove = GLKVector2MultiplyScalar(_velocity, dt);
 	self.position = GLKVector2Add(_position, curMove);
 }
 
