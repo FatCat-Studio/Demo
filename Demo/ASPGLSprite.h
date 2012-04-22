@@ -15,7 +15,6 @@
 @property (assign) GLKVector2 position;
 @property (nonatomic) CGSize contentSize;
 @property (assign) GLKVector2 velocity;
-@property (assign) GLKVector2 acceleration;
 @property (assign) GLfloat rotation;
 @property (assign) BOOL hidden;
 
@@ -49,6 +48,6 @@ respectAspectRatio:(BOOL)respectAR;
 - (void)render;
 - (void)update:(CGFloat)dt;
 - (void)outOfView;
-
+- (void)enableDebugOnView:(UIView*)view;
 @end
 

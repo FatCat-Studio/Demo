@@ -27,7 +27,10 @@ typedef struct {
 static NSMutableSet *__ASPGLFreeSprites;
 static NSCache *__ASPGLTextureCache;
 
-@interface ASPGLSprite()
+@interface ASPGLSprite(){
+	UILabel *_debugLabel;
+	UIView *_debugView;
+}
 @property (strong) GLKBaseEffect * effect;
 @property (assign) TexturedQuad quad;
 @property (strong) GLKTextureInfo * textureInfo;
@@ -170,7 +173,7 @@ respectAspectRatio:(BOOL)respectAR{
 - (GLKMatrix4) modelMatrix {
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
     modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
-	//modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width, -self.contentSize.height, 0);
+	modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, 0, 0);
 	modelMatrix = GLKMatrix4Scale(modelMatrix, _contentSize.width/_textureInfo.width,_contentSize.height/_textureInfo.height, 0);
 //	modelMatrix = GLKMatrix4RotateZ(modelMatrix, - self.velocity.x/6000.);
     return modelMatrix;
@@ -192,9 +195,26 @@ respectAspectRatio:(BOOL)respectAR{
 }
 
 -(void)update:(CGFloat)dt {
-	GLKVector2 curMove = GLKVector2MultiplyScalar(_velocity, dt);
-	self.position = GLKVector2Add(_position, curMove);
+	if (!_hidden){
+		GLKVector2 curMove = GLKVector2MultiplyScalar(_velocity, dt);
+		self.position = GLKVector2Add(_position, curMove);
+		if (_debugLabel){
+			CGRect frame=_debugLabel.frame;
+			CGFloat y=_debugView.frame.size.height;
+			_debugLabel.frame=CGRectMake(_position.x,y-_position.y, frame.size.width, frame.size.height);
+			_debugLabel.text=[NSString stringWithFormat:@"%.0f:%.0f\n"
+							  ,_velocity.x,_velocity.y];
+		}
+	}
 }
-
+- (void)enableDebugOnView:(UIView*)view{
+	_debugLabel=[[UILabel alloc] initWithFrame:CGRectMake(_position.x, _position.y-10, 70, 12)];
+	_debugLabel.textColor=[UIColor colorWithWhite:0.5 alpha:1];
+	_debugLabel.backgroundColor=[UIColor clearColor];
+	_debugLabel.numberOfLines=2;
+	_debugLabel.font=[UIFont fontWithName:@"Georgia" size:10];
+	[view addSubview:_debugLabel];
+	_debugView=view;
+}
 
 @end

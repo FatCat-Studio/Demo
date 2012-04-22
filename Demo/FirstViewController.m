@@ -23,7 +23,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 	//Заполняем список
-	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",@"tits.png",nil];
+	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",nil];
 	
 }
 - (void)viewDidUnload{
@@ -42,6 +42,7 @@
 
 #define XSPEED (rand()%600)
 #define YSPEED (rand()%200)
+
 - (void)update{
 	static char a=0;
 	if (!a) {
@@ -59,37 +60,52 @@
 		if (![self.sprites containsObject:sprite]){
 			[self.sprites addObject:sprite];
 			NSLog(@"Now there is %d sprites!",[self.sprites count]);
+			[sprite enableDebugOnView:self.view];
 		}
 	}
 	//Тут логика игры и раздача пиздюлей спрайтам.
 	for (ASPGLSprite *sp in self.sprites){
-		if (sp.position.y>self.viewIOSize.height)
+		if ((sp.position.y>self.viewIOSize.height)||
+			(sp.position.y<-sp.contentSize.height-1))
 			[sp outOfView];
-		
+		[self recalculateVelocity:sp];
 		[sp update:self.timeSinceLastUpdate];
     }
 	a+=8;
 }
 
 -(void)recalculateVelocity:(ASPGLSprite*)sp{
-    GLKVector2 rightWallVelocity = GLKVector2Make(-5, 0);
-    GLKVector2 leftWallVelocity = GLKVector2Make(5, 0);
-    if (sp.position.x+sp.contentSize.width>self.viewIOSize.width) {
+	//Стенки
+    if (sp.position.x-sp.contentSize.width/2>self.viewIOSize.width) {
+		GLKVector2 rightWallVelocity = GLKVector2Make(-5, 0);
         sp.velocity=GLKVector2Add(sp.velocity, rightWallVelocity);
-    }else if(sp.position.x<0){
+    }else if(sp.position.x+sp.contentSize.width/2<0){
+		GLKVector2 leftWallVelocity = GLKVector2Make(5, 0);
         sp.velocity=GLKVector2Add(sp.velocity, leftWallVelocity);
-    }
-    if(touchPos.x!=0 && touchPos.y != 0){
-        
-    }
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];   
-    CGPoint currentPoint = [touch locationInView:self.view];
-	for (ASPGLSprite *sp in self.sprites){
 		
-	}
+    }
+	//Палец
+    if(touchPos.x!=0 && touchPos.y != 0){
+		GLfloat dx=touchPos.x-sp.position.x;
+		GLfloat dy=touchPos.y-sp.position.y;
+		GLKVector2 vect=GLKVector2Make(dx, dy);
+		vect=GLKVector2Normalize(vect);
+		vect=GLKVector2MultiplyScalar(vect, 20);
+        sp.velocity=GLKVector2Add(sp.velocity, vect);
+    }
+	//Сила Архимеда нах
+	
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+	CGPoint point=[[touches anyObject] locationInView:self.view];
+	touchPos=CGPointMake(point.x, self.viewIOSize.height-point.y);
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	CGPoint point=[[touches anyObject] locationInView:self.view];
+	touchPos=CGPointMake(point.x, self.viewIOSize.height-point.y);
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+	touchPos=CGPointMake(0, 0);
 }
 
 
