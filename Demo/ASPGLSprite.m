@@ -38,19 +38,25 @@ static NSCache *__ASPGLTextureCache;
 @end
 
 @implementation ASPGLSprite
-@synthesize effect = _effect, quad = _quad, textureInfo = _textureInfo;
-@synthesize position = _position, contentSize = _contentSize, velocity = _velocity, fileName=_fileName;
-@synthesize hidden=_hidden, rotation=_rotation;
+@synthesize effect = _effect;
+@synthesize quad = _quad;
+@synthesize textureInfo = _textureInfo;
+@synthesize position = _position;
+@synthesize contentSize = _contentSize;
+@synthesize velocity = _velocity;
+@synthesize fileName=_fileName;
+@synthesize hidden=_hidden;
+@synthesize rotation=_rotation;
 #pragma mark Class Methods
 + (ASPGLSprite*) spriteWithTextureName:(NSString*)fileName effect:(GLKBaseEffect*)effect{
 	if (__ASPGLFreeSprites)
-	for (ASPGLSprite *sp in __ASPGLFreeSprites){
-		if (![sp.fileName compare:fileName]){
-			sp.hidden=NO;
-			[__ASPGLFreeSprites removeObject:sp];
-			return sp;
+		for (ASPGLSprite *sp in __ASPGLFreeSprites){
+			if (![sp.fileName compare:fileName]){
+				sp.hidden=NO;
+				[__ASPGLFreeSprites removeObject:sp];
+				return sp;
+			}
 		}
-	}
 	return [[ASPGLSprite alloc] initWithFile:fileName effect:effect];
 }
 + (void) addSpriteToFreeCache:(ASPGLSprite*)sp{
@@ -174,7 +180,7 @@ respectAspectRatio:(BOOL)respectAR{
     modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
 	modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, 0, 0);
 	modelMatrix = GLKMatrix4Scale(modelMatrix, _contentSize.width/_textureInfo.width,_contentSize.height/_textureInfo.height, 0);
-//	modelMatrix = GLKMatrix4RotateZ(modelMatrix, - self.velocity.x/6000.);
+	//	modelMatrix = GLKMatrix4RotateZ(modelMatrix, - self.velocity.x/6000.);
     return modelMatrix;
 }
 
