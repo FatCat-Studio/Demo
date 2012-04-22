@@ -13,14 +13,15 @@
 
 @property (strong,nonatomic) NSString *fileName;
 @property (assign) GLKVector2 position;
-@property (nonatomic,setter = setContentSize:) CGSize contentSize;
+@property (nonatomic) CGSize contentSize;
 @property (assign) GLKVector2 moveVelocity;
+@property (assign) GLfloat rotation;
 @property (assign) BOOL hidden;
 
 #pragma mark Class Methods
 + (ASPGLSprite*) spriteWithTextureName:(NSString*)fileName effect:(GLKBaseEffect*)effect;
 + (GLKTextureInfo*) loadTextureToStorage:(NSString*)fileName;
-
++ (void) clearTextureCache;
 #pragma mark Init
 - (id)initWithFile:(NSString *)fileName 
 			effect:(GLKBaseEffect *)effect
