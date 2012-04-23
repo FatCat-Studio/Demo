@@ -92,6 +92,7 @@
     }else if(sp.position.x-sp.contentSize.width/2<0){
 		GLKVector2 leftWallVelocity = GLKVector2Make(WALLFORCEX, WALLFORCEY);
         sp.velocity=GLKVector2Add(sp.velocity, leftWallVelocity);
+<<<<<<< HEAD
     }else{
 		CGFloat dvx=sp.velocity.x,ndvx=0;
 		if (dvx!=XSPEED&&dvx!=-XSPEED){
@@ -114,6 +115,11 @@
 		sp.velocity=GLKVector2Add(sp.velocity, ndv);
 	}
 	if(touching){
+=======
+    }
+	//Палец
+    if(touching){
+>>>>>>> Add some Phisics Ball And Earth
 		GLfloat dx=touchPos.x-sp.position.x;
 		GLfloat dy=touchPos.y-sp.position.y;
 		GLKVector2 vect=GLKVector2Make(dx, dy);

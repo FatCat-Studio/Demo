@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551135011545E43000768676 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 551135001545E43000768676 /* ball.png */; };
 		5854518515444FC400197B7C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5854518415444FC400197B7C /* FirstViewController.m */; };
 		5866193515414A7200152552 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866193415414A7200152552 /* UIKit.framework */; };
 		5866193715414A7200152552 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866193615414A7200152552 /* Foundation.framework */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		551135001545E43000768676 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		5854518315444FC400197B7C /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		5854518415444FC400197B7C /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		5866193015414A7200152552 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 		586619641541596D00152552 /* Pics */ = {
 			isa = PBXGroup;
 			children = (
+				551135001545E43000768676 /* ball.png */,
 				58E0A7D1154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png */,
 				58B55E9E15436C8D00DB2786 /* spaceinvaders.png */,
 				58B55EA11543719400DB2786 /* tits.png */,
@@ -207,6 +210,7 @@
 				58B55EA21543719400DB2786 /* tits.png in Resources */,
 				58E0A7D2154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png in Resources */,
 				586BBA551544A5B700332DED /* player.png in Resources */,
+				551135011545E43000768676 /* ball.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
