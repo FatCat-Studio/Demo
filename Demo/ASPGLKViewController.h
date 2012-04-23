@@ -11,7 +11,6 @@
 #import "ASPGLSprite.h"
 @interface ASPGLKViewController : GLKViewController
 @property (strong) GLKBaseEffect * effect;
-@property (strong) ASPGLSprite * player;
 @property (strong,nonatomic) EAGLContext *context;
 @property (strong,nonatomic) NSMutableArray *sprites;
 @property (readonly) CGSize viewIOSize;

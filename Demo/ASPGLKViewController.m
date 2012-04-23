@@ -12,7 +12,7 @@
 
 @end
 @implementation ASPGLKViewController
-@synthesize context=_context,player=_player,effect=_effect,sprites=_sprites,viewIOSize,backgroundColor=_backgroundColor;
+@synthesize context=_context,effect=_effect,sprites=_sprites,viewIOSize,backgroundColor=_backgroundColor;
 -(CGSize)viewIOSize{
 	return self.view.bounds.size; //А ларчик просто открывался, бля.
 }
@@ -65,6 +65,9 @@
     glClear(GL_COLOR_BUFFER_BIT);    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
+	for (ASPGLSprite *sp in self.sprites) {
+		[sp render];
+	}
 }
 
 

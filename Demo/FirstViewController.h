@@ -9,5 +9,5 @@
 #import "ASPGLKViewController.h"
 
 @interface FirstViewController : ASPGLKViewController
-
+-(IBAction)pause:(id)sender;
 @end
