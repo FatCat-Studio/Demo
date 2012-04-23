@@ -13,10 +13,14 @@
 @property (strong) ASPGLSprite * player;
 @end
 
+static inline BOOL GLKVector2CompareRadious(GLKVector2 first,GLKVector2 second,CGFloat rad){
+	return rad>=GLKVector2Distance(first, second);
+}
+
 @implementation FirstViewController{
 	//Тут лежит список имен файлов текстур
 	NSArray *pics;
-	CGPoint touchPos;
+	GLKVector2 touchPos;
 	BOOL touching;
 }
 @synthesize player=_player;
@@ -72,8 +76,13 @@
 		if ((sp.position.y>self.viewIOSize.height)||
 			(sp.position.y<-sp.contentSize.height-1))
 			[sp outOfView];
+		if (touching){
+			if (GLKVector2CompareRadious(sp.centerPosition, _player.centerPosition,10.))
+				[sp outOfView];
+		}
 		[self recalculateVelocity:sp];
 		[sp update:self.timeSinceLastUpdate];
+		
     }
 	if (touching){
 		self.player.position=GLKVector2Make(touchPos.x, touchPos.y-self.player.contentSize.height/2);
@@ -114,19 +123,19 @@
 		GLKVector2 ndv=GLKVector2Make(ndvx/10, ndvy/10);
 		sp.velocity=GLKVector2Add(sp.velocity, ndv);
 	}
-	if(touching){
-
-    }
 	//Палец
     if(touching){
-		GLfloat dx=touchPos.x-sp.position.x;
-		GLfloat dy=touchPos.y-sp.position.y;
-		GLKVector2 vect=GLKVector2Make(dx, dy);
-		CGFloat length=100-GLKVector2Length(vect);
-		vect=GLKVector2Normalize(vect);
-		if (length>0)
-			vect=GLKVector2MultiplyScalar(vect, length);
-        sp.velocity=GLKVector2Add(sp.velocity, vect);
+		if (GLKVector2CompareRadious(touchPos, sp.centerPosition, 100)){
+			GLKVector2 direction=GLKVector2Subtract(touchPos, sp.centerPosition);
+			GLfloat distance=GLKVector2Length(direction);
+			GLfloat width=sp.contentSize.width;
+			GLfloat height=sp.contentSize.height;
+			sp.contentSize=CGSizeMake(width-1, height-1);
+			direction=GLKVector2Normalize(direction);
+			sp.velocity=GLKVector2Add(sp.velocity,GLKVector2MultiplyScalar(direction, 100-distance));
+			
+		}
+       
 	}	
 	//Сила Архимеда нах
 	
@@ -134,15 +143,11 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 	touching=YES;
 	CGPoint point=[[touches anyObject] locationInView:self.view];
-	touchPos=CGPointMake(point.x, self.viewIOSize.height-point.y);
+	touchPos=GLKVector2Make(point.x, self.viewIOSize.height-point.y);
 }
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	CGPoint point=[[touches anyObject] locationInView:self.view];
-	touchPos=CGPointMake(point.x, self.viewIOSize.height-point.y);
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-	touching=NO;
-}
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+//	touching=NO;
+//}
 
 -(IBAction)pause:(id)sender{
 	self.paused=!self.paused;

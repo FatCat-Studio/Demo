@@ -51,3 +51,6 @@ respectAspectRatio:(BOOL)respectAR;
 - (void)enableDebugOnView:(UIView*)view;
 @end
 
+@interface ASPGLSprite (Coordinates)
+@property (nonatomic) GLKVector2 centerPosition;
+@end

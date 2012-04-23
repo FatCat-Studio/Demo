@@ -221,5 +221,14 @@ respectAspectRatio:(BOOL)respectAR{
 	[view addSubview:_debugLabel];
 	_debugView=view;
 }
+@end
 
+@implementation ASPGLSprite (Coordinates)
+@dynamic centerPosition;
+- (void) setCenterPosition:(GLKVector2)centerPosition{
+	self.position=GLKVector2Make(centerPosition.x,centerPosition.y-self.contentSize.height/2.);
+}
+- (GLKVector2)centerPosition{
+	return GLKVector2Make(self.position.x, self.position.y+self.contentSize.height/2.);
+}
 @end
