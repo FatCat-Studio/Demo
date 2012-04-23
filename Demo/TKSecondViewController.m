@@ -19,6 +19,8 @@
 {
 	//Тут лежит список имен файлов текстур
 	NSArray *pics;
+	ASPGLSprite *earth;
+	ASPGLSprite *ball;
 }
 
 //Тут желательно прогрузить все текстуры и насоздавать спрайтов.
@@ -32,37 +34,19 @@
 	self.backgroundColor=GLKVector3Make(0.3, 0.4, 0.3);
 	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",@"tits.png",nil];
 	
-    
-    /**********************************************************************************/
-    ASPGLSprite *earth = [ASPGLSprite spriteWithTextureName:@"ball.png" effect:self.effect];
-    
+    earth = [ASPGLSprite spriteWithTextureName:@"ball.png" effect:self.effect];
     //Выставляем параметры созданного спрайта
     earth.velocity=GLKVector2Make(0,0);
     earth.contentSize=CGSizeMake(150,150);
     earth.position=GLKVector2Make(self.viewIOSize.width/2, self.viewIOSize.height/2-earth.contentSize.height/2);
+
     
-    //Смотрим, лежит ли спрайт в списке спрайтов и если нет - добавляем его туда
-    if (![self.sprites containsObject:earth]){
-        [self.sprites addObject:earth];
-        NSLog(@"Now there is %d sprites!",[self.sprites count]);
-        [earth enableDebugOnView:self.view];
-    }
-    
-    /**********************************************************************************/
-    
-    ASPGLSprite *ball = [ASPGLSprite spriteWithTextureName:@"ball.png" effect:self.effect];
-    
-    //Выставляем параметры созданного спрайта
+   ball = [ASPGLSprite spriteWithTextureName:@"ball.png" effect:self.effect];
+	//Выставляем параметры созданного спрайта
     ball.velocity=GLKVector2Make(0, 100);
     ball.contentSize=CGSizeMake(70,70);
     ball.position=GLKVector2Make(self.viewIOSize.width/2+100, 0);
     
-    //Смотрим, лежит ли спрайт в списке спрайтов и если нет - добавляем его туда
-    if (![self.sprites containsObject:ball]){
-        [self.sprites addObject:ball];
-        NSLog(@"Now there is %d sprites!",[self.sprites count]);
-        [ball enableDebugOnView:self.view];
-    }
 }
 
 -(void) recalculateVelocityWalls:(ASPGLSprite*)sp{
@@ -74,7 +58,7 @@
     }
 }
 
--(void) recalculateVelocityEarth:(ASPGLSprite*)sp :(ASPGLSprite*)earth{
+-(void) recalculateVelocityEarth:(ASPGLSprite*)sp{
     // Здесь мы рассчитываем новую скорость шарика под действием силы тяжести Земли
     
     GLfloat dx=earth.position.x-sp.position.x; // Разность X координат
@@ -114,15 +98,12 @@
     return sprite;
 }
 
-
 //Этот метод дергается каждый раз, когда GLKit решит, что пора бы
 //пересчитать логику. Соответственно тут нужно раздать указания
 //sprite'ам, что им делать и дернуть у них update
 - (void)update{
-    
 	//Тут логика игры и раздача пиздюлей спрайтам.
-    
-    [self recalculateVelocityEarth:ball :earth];
+    [self recalculateVelocityEarth:ball];
     [self recalculateVelocityWalls:ball];
     [ball update:self.timeSinceLastUpdate];
 }
