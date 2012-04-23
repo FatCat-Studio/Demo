@@ -15,8 +15,7 @@
 #import "TKSecondViewController.h"
 #import "ASPGLSprite.h"
 
-@implementation TKSecondViewController
-{
+@implementation TKSecondViewController{
 	//Тут лежит список имен файлов текстур
 	NSArray *pics;
 	ASPGLSprite *earth;
@@ -26,7 +25,7 @@
 //Тут желательно прогрузить все текстуры и насоздавать спрайтов.
 #define XSPEED (rand()%600)
 #define YSPEED (rand()%200)
-#define GCONST 10
+#define GCONST 50000
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,7 +45,9 @@
     ball.velocity=GLKVector2Make(0, 100);
     ball.contentSize=CGSizeMake(70,70);
     ball.position=GLKVector2Make(self.viewIOSize.width/2+100, 0);
-    
+	
+	[self.sprites addObject:ball];
+	[self.sprites addObject:earth];
 }
 
 -(void) recalculateVelocityWalls:(ASPGLSprite*)sp{
@@ -58,7 +59,7 @@
     }
 }
 
--(void) recalculateVelocityEarth:(ASPGLSprite*)sp{
+-(void) recalculateVelocityEarth:(ASPGLSprite*)sp {
     // Здесь мы рассчитываем новую скорость шарика под действием силы тяжести Земли
     
     GLfloat dx=earth.position.x-sp.position.x; // Разность X координат
@@ -74,7 +75,9 @@
 {
     [super viewDidUnload];
     pics=nil;
-	[ASPGLSprite clearTextureCache];
+	[self.sprites removeObject:earth];
+	[self.sprites removeObject:ball];
+	//[ASPGLSprite clearTextureCache];
 }
 
 //Тут - отрисовка. Т.е у каждого спрайта, который ты хочешь отрисовать
