@@ -133,21 +133,17 @@ static inline BOOL GLKVector2CompareRadious(GLKVector2 first,GLKVector2 second,C
 			sp.contentSize=CGSizeMake(width-1, height-1);
 			direction=GLKVector2Normalize(direction);
 			sp.velocity=GLKVector2Add(sp.velocity,GLKVector2MultiplyScalar(direction, 100-distance));
-			
 		}
-       
 	}	
-	//Сила Архимеда нах
-	
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 	touching=YES;
 	CGPoint point=[[touches anyObject] locationInView:self.view];
 	touchPos=GLKVector2Make(point.x, self.viewIOSize.height-point.y);
 }
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-//	touching=NO;
-//}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+	touching=NO;
+}
 
 -(IBAction)pause:(id)sender{
 	self.paused=!self.paused;
