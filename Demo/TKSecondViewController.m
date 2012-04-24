@@ -26,8 +26,8 @@
 //Тут желательно прогрузить все текстуры и насоздавать спрайтов.
 #define XSPEED (rand()%600)
 #define YSPEED (rand()%200)
-#define GCONSTEARTH 10000
-#define GCONSTMARS 12000
+#define GCONSTEARTH 15000
+#define GCONSTMARS 5000
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,7 +39,7 @@
     //Выставляем параметры созданного спрайта
     mars.velocity=GLKVector2Make(0,0);
     mars.contentSize=CGSizeMake(120,120);
-    mars.position=GLKVector2Make(self.viewIOSize.width/2+30, self.viewIOSize.height/2-earth.contentSize.height/2+50);
+    mars.position=GLKVector2Make(self.viewIOSize.width/2, self.viewIOSize.height/2-earth.contentSize.height/2);
 
 	
     earth = [ASPGLSprite spriteWithTextureName:@"ball.png" effect:self.effect];
@@ -51,13 +51,13 @@
     
     ball = [ASPGLSprite spriteWithTextureName:@"ball.png" effect:self.effect];
 	//Выставляем параметры созданного спрайта
-    ball.velocity=GLKVector2Make(0, 100);
+    ball.velocity=GLKVector2Make(0, 150);
     ball.contentSize=CGSizeMake(30,30);
-    ball.position=GLKVector2Make(self.viewIOSize.width/2+100, 0);
+    ball.position=GLKVector2Make(self.viewIOSize.width/2, 0);
 	
 	[self.sprites addObject:ball];
     [self.sprites addObject:mars];
-	[self.sprites addObject:earth];
+	//[self.sprites addObject:earth];
 }
 
 -(void) recalculateVelocityWalls:(ASPGLSprite*)sp{
@@ -72,7 +72,7 @@
 -(void) recalculateVelocityEarth:(ASPGLSprite*)sp {
     // Здесь мы рассчитываем новую скорость шарика под действием силы тяжести Земли
     
-    GLfloat dx=earth.position.x-sp.position.x-sp.contentSize.height/2; // Разность X координат
+    GLfloat dx=earth.position.x-sp.position.x+sp.contentSize.height/2; // Разность X координат
     GLfloat dy=earth.position.y-sp.position.y; // разность Y координат
     GLKVector2 vect=GLKVector2Make(dx, dy); // Направление действия силы
     vect=GLKVector2Normalize(vect); // Привели к единичной длине
@@ -81,16 +81,37 @@
     sp.velocity=GLKVector2Add(sp.velocity, vect); // Добавляем изменения
 }
 
+
 -(void) recalculateVelocityMars:(ASPGLSprite*)sp {
     // Здесь мы рассчитываем новую скорость шарика под действием силы тяжести Марса
-    
+
     GLfloat dx=mars.position.x-sp.position.x-sp.contentSize.height/2; // Разность X координат
     GLfloat dy=mars.position.y-sp.position.y; // разность Y координат
-    GLKVector2 vect=GLKVector2Make(dx, dy); // Направление действия силы
+    GLKVector2 vect=GLKVector2Make(dx, dy); // вектор, соединяющий середины шариков
+    float length = sqrtf(dx*dx + dy*dy);
+    if( length <= 30 ){ // Если мы упали на Планету
+        sp.velocity = [self recalculateVelocityPlanet:ball
+                                               planet:mars];
+        return;
+    }
     vect=GLKVector2Normalize(vect); // Привели к единичной длине
     CGFloat acceleration = GCONSTMARS/(dx*dx + dy*dy); // Модуль силы
     vect=GLKVector2MultiplyScalar(vect, acceleration); // Задали направление ускорения
-    sp.velocity=GLKVector2Add(sp.velocity, vect); // Добавляем изменения
+    sp.velocity = GLKVector2Add(sp.velocity, vect); // Наша новая скорость
+}
+
+- (GLKVector2) recalculateVelocityPlanet:(ASPGLSprite*)sp planet:(ASPGLSprite*)planet{
+    GLfloat dx=planet.position.x-sp.position.x+sp.contentSize.height/2; // Разность X координат
+    GLfloat dy=planet.position.y-sp.position.y; // разность Y координат
+    GLKVector2 vect=GLKVector2Make(dx, dy); // вектор, соединяющий середины шариков
+    // Вычисляем новую скорость при столкновении с шариком.
+    GLKVector2 newVelocity = GLKVector2Add(GLKVector2Make(-sp.velocity.x, -sp.velocity.y),
+                                           GLKVector2MultiplyScalar(vect, 
+                                                                    2 * (dx*sp.velocity.x + dy*sp.velocity.y)/
+                                                                    (GLKVector2Length(vect) * GLKVector2Length(vect))
+                                                                    )
+                                           );
+    return GLKVector2Make(-newVelocity.x, -newVelocity.y);
 }
 
 //Тут нужно очистить кэш и sprites
@@ -118,9 +139,10 @@
 - (void)update{
     
 	//Тут логика игры и раздача пиздюлей спрайтам.
-    [self recalculateVelocityEarth:ball];
+    //[self recalculateVelocityEarth:ball];
     [self recalculateVelocityMars:ball];
     [self recalculateVelocityWalls:ball];
+    NSLog(@"%f %f",ball.velocity.x, ball.velocity.y);
     [ball update:self.timeSinceLastUpdate];
 }
 //Отменяем себя
