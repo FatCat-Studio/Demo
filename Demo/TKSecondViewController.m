@@ -14,7 +14,8 @@
 
 #import "TKSecondViewController.h"
 #import "ASPGLSprite.h"
-
+#import <stdlib.h>
+#include "ASPGLKVector2Extension.h"
 @implementation TKSecondViewController{
 	//Тут лежит список имен файлов текстур
 	NSArray *pics;
@@ -22,6 +23,7 @@
     ASPGLSprite *mars;
 	ASPGLSprite *ball;
 }
+
 
 //Тут желательно прогрузить все текстуры и насоздавать спрайтов.
 #define XSPEED (rand()%600)
@@ -53,7 +55,7 @@
 	//Выставляем параметры созданного спрайта
     ball.velocity=GLKVector2Make(0, 150);
     ball.contentSize=CGSizeMake(30,30);
-    ball.position=GLKVector2Make(self.viewIOSize.width/2, 0);
+    ball.position=GLKVector2Make(self.viewIOSize.width/2+30, 0);
 	
 	[self.sprites addObject:ball];
     [self.sprites addObject:mars];
@@ -62,10 +64,11 @@
 
 -(void) recalculateVelocityWalls:(ASPGLSprite*)sp{
     //Стенки
-    if (sp.position.x-sp.contentSize.width/2>self.viewIOSize.width) {
+    if ((sp.position.x+sp.contentSize.width/2>self.viewIOSize.width)||(sp.position.x-sp.contentSize.width/2<0)){
         sp.velocity=GLKVector2Make(-sp.velocity.x, sp.velocity.y);
-    }else if(sp.position.x+sp.contentSize.width/2<0){
-		sp.velocity=GLKVector2Make(-sp.velocity.x, sp.velocity.y);
+    }
+    if((sp.position.y<0)||(sp.position.y+sp.contentSize.height>self.viewIOSize.height)){
+		sp.velocity=GLKVector2Make(sp.velocity.x, -sp.velocity.y);
     }
 }
 
@@ -84,34 +87,16 @@
 
 -(void) recalculateVelocityMars:(ASPGLSprite*)sp {
     // Здесь мы рассчитываем новую скорость шарика под действием силы тяжести Марса
-
-    GLfloat dx=mars.position.x-sp.position.x-sp.contentSize.height/2; // Разность X координат
-    GLfloat dy=mars.position.y-sp.position.y; // разность Y координат
-    GLKVector2 vect=GLKVector2Make(dx, dy); // вектор, соединяющий середины шариков
-    float length = sqrtf(dx*dx + dy*dy);
-    if( length <= 30 ){ // Если мы упали на Планету
-        sp.velocity = [self recalculateVelocityPlanet:ball
-                                               planet:mars];
+    GLKVector2 vect=GLKVector2Subtract(mars.centerPosition,sp.centerPosition); // вектор, соединяющий середины шариков
+    float length = GLKVector2Length(vect);
+    if( length <= 60 ){ // Если мы упали на Планету
+        sp.velocity=GLKVector2Mirror(sp.velocity, GLKVector2Subtract(mars.centerPosition,sp.centerPosition));
         return;
     }
     vect=GLKVector2Normalize(vect); // Привели к единичной длине
-    CGFloat acceleration = GCONSTMARS/(dx*dx + dy*dy); // Модуль силы
+    CGFloat acceleration = 9.8;// Модуль силы
     vect=GLKVector2MultiplyScalar(vect, acceleration); // Задали направление ускорения
-    sp.velocity = GLKVector2Add(sp.velocity, vect); // Наша новая скорость
-}
-
-- (GLKVector2) recalculateVelocityPlanet:(ASPGLSprite*)sp planet:(ASPGLSprite*)planet{
-    GLfloat dx=planet.position.x-sp.position.x+sp.contentSize.height/2; // Разность X координат
-    GLfloat dy=planet.position.y-sp.position.y; // разность Y координат
-    GLKVector2 vect=GLKVector2Make(dx, dy); // вектор, соединяющий середины шариков
-    // Вычисляем новую скорость при столкновении с шариком.
-    GLKVector2 newVelocity = GLKVector2Add(GLKVector2Make(-sp.velocity.x, -sp.velocity.y),
-                                           GLKVector2MultiplyScalar(vect, 
-                                                                    2 * (dx*sp.velocity.x + dy*sp.velocity.y)/
-                                                                    (GLKVector2Length(vect) * GLKVector2Length(vect))
-                                                                    )
-                                           );
-    return GLKVector2Make(-newVelocity.x, -newVelocity.y);
+    sp.velocity = GLKVector2Add(sp.velocity, vect); // Наша новая скорость      
 }
 
 //Тут нужно очистить кэш и sprites

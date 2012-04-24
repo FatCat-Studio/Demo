@@ -54,3 +54,4 @@ respectAspectRatio:(BOOL)respectAR;
 @interface ASPGLSprite (Coordinates)
 @property (nonatomic) GLKVector2 centerPosition;
 @end
+
