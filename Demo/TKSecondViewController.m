@@ -32,7 +32,7 @@
     [super viewDidLoad];
 	//Заполняем список
 	self.backgroundColor=GLKVector3Make(0.3, 0.4, 0.3);
-//	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",@"tits.png",nil];
+	pics = [NSArray arrayWithObjects:@"Space_Invaders_by_maleiva.png",@"spaceinvaders.png",@"tits.png",nil];
     
     mars = [ASPGLSprite spriteWithTextureName:@"ball.png" effect:self.effect];
     //Выставляем параметры созданного спрайта
