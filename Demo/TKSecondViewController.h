@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 MIPT iLab. All rights reserved.
 //
 
-#import "ASPGLKViewController.h"
+#import "ASPEngine.h"
 
 @interface TKSecondViewController : ASPGLKViewController
 -(IBAction)dismiss:(id)sender;

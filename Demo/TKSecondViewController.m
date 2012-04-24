@@ -13,9 +13,6 @@
 //	отдельный вызов апдейт, не в переболе всех элементов self.sprites
 
 #import "TKSecondViewController.h"
-#import "ASPGLSprite.h"
-#import <stdlib.h>
-#include "ASPGLKVector2Extension.h"
 @implementation TKSecondViewController{
 	//Тут лежит список имен файлов текстур
 	NSArray *pics;

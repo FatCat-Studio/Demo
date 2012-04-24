@@ -19,10 +19,9 @@
 		5866195315414C8600152552 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866195215414C8600152552 /* OpenGLES.framework */; };
 		5866195515414C8D00152552 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866195415414C8D00152552 /* GLKit.framework */; };
 		586619601541559700152552 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5866195F1541559700152552 /* QuartzCore.framework */; };
-		586619631541576E00152552 /* ASPGLSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 586619621541576E00152552 /* ASPGLSprite.m */; };
 		586619661541596D00152552 /* Space_Invaders_by_maleiva.png in Resources */ = {isa = PBXBuildFile; fileRef = 586619651541596D00152552 /* Space_Invaders_by_maleiva.png */; };
 		586BBA551544A5B700332DED /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 586BBA541544A5B700332DED /* player.png */; };
-		586BBA621544AF7300332DED /* ASPGLKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586BBA611544AF5700332DED /* ASPGLKViewController.m */; };
+		58B17C431547123A00EEBF36 /* libASPEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B17C421547123A00EEBF36 /* libASPEngine.a */; };
 		58B55E9F15436C8D00DB2786 /* spaceinvaders.png in Resources */ = {isa = PBXBuildFile; fileRef = 58B55E9E15436C8D00DB2786 /* spaceinvaders.png */; };
 		58B55EA21543719400DB2786 /* tits.png in Resources */ = {isa = PBXBuildFile; fileRef = 58B55EA11543719400DB2786 /* tits.png */; };
 		58E0A7D2154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E0A7D1154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		551135001545E43000768676 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
-		5559EEC91546FEE300C48005 /* ASPGLKVector2Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASPGLKVector2Extension.h; sourceTree = "<group>"; };
 		5854518315444FC400197B7C /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		5854518415444FC400197B7C /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		5866193015414A7200152552 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,12 +46,10 @@
 		5866195215414C8600152552 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		5866195415414C8D00152552 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		5866195F1541559700152552 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		586619611541576E00152552 /* ASPGLSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASPGLSprite.h; sourceTree = "<group>"; };
-		586619621541576E00152552 /* ASPGLSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASPGLSprite.m; sourceTree = "<group>"; };
 		586619651541596D00152552 /* Space_Invaders_by_maleiva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Space_Invaders_by_maleiva.png; sourceTree = "<group>"; };
 		586BBA541544A5B700332DED /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
-		586BBA601544AF5700332DED /* ASPGLKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASPGLKViewController.h; sourceTree = "<group>"; };
-		586BBA611544AF5700332DED /* ASPGLKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASPGLKViewController.m; sourceTree = "<group>"; };
+		58B17C41154711E500EEBF36 /* ASPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPEngine.h; path = ../ASPEngine/ASPEngine/ASPEngine.h; sourceTree = "<group>"; };
+		58B17C421547123A00EEBF36 /* libASPEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASPEngine.a; path = "../DerivedData/First Game/Build/Products/Debug-iphoneos/libASPEngine.a"; sourceTree = "<group>"; };
 		58B55E9E15436C8D00DB2786 /* spaceinvaders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceinvaders.png; sourceTree = "<group>"; };
 		58B55EA11543719400DB2786 /* tits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tits.png; sourceTree = "<group>"; };
 		58E0A7D1154495AB00C38207 /* erotika_s_krasivymi_popkami-23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "erotika_s_krasivymi_popkami-23.png"; sourceTree = "<group>"; };
@@ -72,6 +68,7 @@
 				5866193515414A7200152552 /* UIKit.framework in Frameworks */,
 				5866193715414A7200152552 /* Foundation.framework in Frameworks */,
 				5866193915414A7200152552 /* CoreGraphics.framework in Frameworks */,
+				58B17C431547123A00EEBF36 /* libASPEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +95,8 @@
 		5866193315414A7200152552 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58B17C41154711E500EEBF36 /* ASPEngine.h */,
+				58B17C421547123A00EEBF36 /* libASPEngine.a */,
 				5866195F1541559700152552 /* QuartzCore.framework */,
 				5866195415414C8D00152552 /* GLKit.framework */,
 				5866195215414C8600152552 /* OpenGLES.framework */,
@@ -113,15 +112,10 @@
 			children = (
 				5866194315414A7200152552 /* ASPAppDelegate.h */,
 				5866194415414A7200152552 /* ASPAppDelegate.m */,
-				586BBA601544AF5700332DED /* ASPGLKViewController.h */,
-				586BBA611544AF5700332DED /* ASPGLKViewController.m */,
 				5854518315444FC400197B7C /* FirstViewController.h */,
 				5854518415444FC400197B7C /* FirstViewController.m */,
 				58F569B915446A4F007FDA70 /* TKSecondViewController.h */,
 				58F569BA15446A4F007FDA70 /* TKSecondViewController.m */,
-				586619611541576E00152552 /* ASPGLSprite.h */,
-				586619621541576E00152552 /* ASPGLSprite.m */,
-				5559EEC91546FEE300C48005 /* ASPGLKVector2Extension.h */,
 				5866195015414AB400152552 /* Storyboard.storyboard */,
 				5866193B15414A7200152552 /* Supporting Files */,
 			);
@@ -225,9 +219,7 @@
 			files = (
 				5866194115414A7200152552 /* main.m in Sources */,
 				5866194515414A7200152552 /* ASPAppDelegate.m in Sources */,
-				586619631541576E00152552 /* ASPGLSprite.m in Sources */,
 				5854518515444FC400197B7C /* FirstViewController.m in Sources */,
-				586BBA621544AF7300332DED /* ASPGLKViewController.m in Sources */,
 				58F569BB15446A4F007FDA70 /* TKSecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +289,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/Demo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../DerivedData/First Game/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -308,6 +304,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/Demo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../DerivedData/First Game/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
