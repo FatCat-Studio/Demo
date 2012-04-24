@@ -7,7 +7,6 @@
 //
 
 #import "ASPAppDelegate.h"
-
 @implementation ASPAppDelegate
 
 @synthesize window = _window;
